@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head lang="en">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <title>Styleguide | {{componentName}}</title>
+        <link rel="stylesheet" href="/compiled/stylesheet.css"/>
+        <link rel="stylesheet" href="/client/styleguide.css"/>
+    </head>
+    <body>
+
+        {{{body}}}
+
+        <section class="sg-tpl hide">
+            HTML content
+            <pre><code>{{body}}</code></pre>
+        </section>
+        <section class="sg-tpl hide">
+            Mustache template
+            <pre><code>{{template}}</code></pre>
+        </section>
+
+
+        <script src="/compiled/bundle.js"></script>
+    </body>
+</html>

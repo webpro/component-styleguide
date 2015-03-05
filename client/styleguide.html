@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Style Guide</title>
+        <link rel="stylesheet" href="/client/styleguide.css"/>
+    </head>
+    <body class="sg">
+
+        <div class="sg-header">
+
+            <ul class="sg-nav">
+                <li title="atoms">
+                    <svg role="img" title="atoms"><use xlink:href="/client/svgdefs.svg#icon-dot-single"></use></svg>
+                    <ul>
+                        {{#pages.atoms}}
+                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
+                        {{/pages.atoms}}
+                    </ul>
+
+                </li>
+                <li title="molecules">
+                    <svg role="img" title="molecules"><use xlink:href="/client/svgdefs.svg#icon-flow-line"></use></svg>
+                    <ul>
+                        {{#pages.molecules}}
+                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
+                        {{/pages.molecules}}
+                    </ul>
+
+                </li>
+                <li title="organisms">
+                    <svg role="img" title="organisms"><use xlink:href="/client/svgdefs.svg#icon-flow-tree"></use></svg>
+                    <ul>
+                        {{#pages.organisms}}
+                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
+                        {{/pages.organisms}}
+                    </ul>
+
+                </li>
+                <li title="templates">
+                    <svg role="img" title="templates"><use xlink:href="/client/svgdefs.svg#icon-file"></use></svg>
+                    <ul>
+                        {{#pages.templates}}
+                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
+                        {{/pages.templates}}
+                    </ul>
+
+                </li>
+                <li title="pages">
+                    <svg role="img" title="pages"><use xlink:href="/client/svgdefs.svg#icon-article"></use></svg>
+                    <ul>
+                        {{#pages.pages}}
+                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
+                        {{/pages.pages}}
+                    </ul>
+
+                </li>
+                <li><a href="all"><svg role="img" title="back"><use xlink:href="/client/svgdefs.svg#icon-format-align-justify"></use></svg></a></li>
+            </ul>
+
+            <ul class="sg-sizes">
+                <li><a href="#" data-action-resize="XS"><svg role="img" title="back"><use xlink:href="/client/svgdefs.svg#icon-phone-iphone"></use></svg></a></li>
+                <li><a href="#" data-action-resize="S"><svg role="img" title="back"><use xlink:href="/client/svgdefs.svg#icon-phone-android"></use></svg></a></li>
+                <li><a href="#" data-action-resize="M"><svg role="img" title="back"><use xlink:href="/client/svgdefs.svg#icon-tablet-android"></use></svg></a></li>
+                <li><a href="#" data-action-resize="L"><svg role="img" title="back"><use xlink:href="/client/svgdefs.svg#icon-laptop-chromebook"></use></svg></a></li>
+                <li><a href="#" data-action-resize="MAX" class="active"><svg role="img" title="back"><use xlink:href="/client/svgdefs.svg#icon-desktop-windows"></use></svg></a></li>
+            </ul>
+
+            <span class="sg-current-width"></span>
+
+            <a href="#" class="sg-toggle-source" data-action-source="S"><svg role="img" title="back"><use xlink:href="/client/svgdefs.svg#icon-code"></use></svg></a>
+
+        </div>
+
+        <div class="sg-main">
+            <div>
+                <iframe id="sg-viewport animate" sandbox="allow-same-origin allow-scripts" src="all"></iframe>
+            </div>
+        </div>
+
+        <script src="/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="/client/styleguide.js"></script>
+
+    </body>
+</html>

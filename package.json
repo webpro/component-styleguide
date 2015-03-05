@@ -1,0 +1,44 @@
+{
+  "name": "component-styleguide",
+  "version": "1.0.0",
+  "description": "Simple styleguide framework",
+  "keywords": [
+    "styleguide",
+    "components",
+    "patterns"
+  ],
+  "main": "server/index.js",
+  "bin": {
+    "styleguide": "bin/styleguide.js"
+  },
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon -w client -w server -e js,json,html example/server"
+  },
+  "dependencies": {
+    "compression": "^1.4.1",
+    "express": "^4.12.0",
+    "express-handlebars": "^1.2.1",
+    "glob": "^4.4.0",
+    "handlebars": "^3.0.0",
+    "jquery": "^2.1.3",
+    "minimist": "^1.1.0",
+    "promise": "^6.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.3.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/webpro/component-styleguide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webpro/component-styleguide/issues"
+  },
+  "author": {
+    "name": "Lars Kappert",
+    "email": "lars@webpro.nl",
+    "url": "http://webpro.nl"
+  },
+  "license": "MIT"
+}
