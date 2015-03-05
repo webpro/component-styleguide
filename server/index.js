@@ -16,7 +16,8 @@ var defaults = {
     data: path.resolve(process.cwd(), 'data'),
     static: path.resolve(process.cwd(), 'compiled'),
     staticPath: '/compiled',
-    ext: 'html'
+    ext: 'html',
+    middlewares: []
 };
 
 module.exports = function start(options) {
@@ -25,13 +26,18 @@ module.exports = function start(options) {
         componentDir = options.components || defaults.components,
         dataDir = options.data || defaults.data,
         staticDir = options.static || defaults.static,
-        staticPath = options.staticPath || defaults.staticPath;
+        staticPath = options.staticPath || defaults.staticPath,
+        middlewares = options.middlewares || defaults.middlewares;
 
     var ehbs = exphbs.create({
         defaultLayout: 'component',
         layoutsDir: clientDir,
         extname: '.html',
         partialsDir: componentDir
+    });
+
+    middlewares.forEach(function(middleware) {
+        app.use(middleware);
     });
 
     app.engine(ext, ehbs.engine);
