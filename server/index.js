@@ -15,6 +15,7 @@ var defaults = {
     components: path.resolve(process.cwd(), 'components'),
     data: path.resolve(process.cwd(), 'data'),
     static: path.resolve(process.cwd(), 'compiled'),
+    staticPath: '/compiled',
     ext: 'html'
 };
 
@@ -23,7 +24,8 @@ module.exports = function start(options) {
     var ext = options.ext || defaults.ext,
         componentDir = options.components || defaults.components,
         dataDir = options.data || defaults.data,
-        staticDir = options.static || defaults.static;
+        staticDir = options.static || defaults.static,
+        staticPath = options.staticPath || defaults.staticPath;
 
     var ehbs = exphbs.create({
         defaultLayout: 'component',
@@ -38,7 +40,7 @@ module.exports = function start(options) {
     app.use(compression());
     app.use('/client', express.static(clientDir));
     app.use('/vendor', express.static(vendorDir));
-    app.use('/compiled', express.static(staticDir));
+    app.use(staticPath, express.static(staticDir));
 
     return new Promise(function(resolve, reject) {
 
@@ -59,7 +61,8 @@ module.exports = function start(options) {
                 app.get('/all', function(req, res) {
                     res.render('all', {
                         layout: false,
-                        components: components.flat
+                        components: components.flat,
+                        staticPath: staticPath
                     });
                 });
 
@@ -68,6 +71,7 @@ module.exports = function start(options) {
                         filename = id + '.' + ext,
                         component = [req.params.type, id].join('/');
                     data.template = fs.readFileSync(path.resolve(componentDir, req.params.type, filename)).toString();
+                    data.staticPath = staticPath;
                     res.render(component, data);
                 });
 
