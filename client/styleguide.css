@@ -20,7 +20,7 @@
     left: 0;
     width: 100%;
     z-index: 1;
-    background-color: #eee;
+    background-color: #ddd;
 }
 
 .sg-header a {
@@ -28,7 +28,7 @@
 }
 
 .sg-header a:hover {
-    background-color: #eee;
+    background-color: #ddd;
     text-decoration: underline;
 }
 
@@ -71,7 +71,7 @@
 
 .sg-nav ul a {
     display: block;
-    padding: 5px;
+    padding: 6px 12px 6px 6px;
     text-decoration: none;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .sg-nav li:hover a {
-    background-color: #eee;
+    background-color: #ddd;
     text-decoration: underline;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .sg-nav li:hover ul li a:hover {
-    background-color: #ddd;
+    background-color: #bbb;
 }
 
 .sg-main {
@@ -150,8 +150,11 @@
     transition: width 0.3s ease-in;
 }
 
-.sg-h2 {
-    border-bottom: 1px solid #000;
+.sg-component-title {
+    color: #666;
+    font-size: 1.5em;
+    border-left: 1.2em solid #ddd;
+    padding-left: 0.2em;
 }
 
 .sg-tpl {
