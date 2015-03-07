@@ -1,10 +1,17 @@
 (function() {
 
-    var navHeight = $('.sg-header')[0].offsetHeight,
-        screenWidth = window.innerWidth;
+    var navHeight = $('.sg-header')[0].offsetHeight;
+
+    var sizeMapping = {
+        XS: '320px',
+        S: '375px',
+        M: '768px',
+        L: '1024px',
+        MAX: '100%'
+    };
 
     $('.sg-main')[0].style.top = navHeight + 'px';
-    $('.sg-main iframe')[0].style.width = screenWidth + 'px';
+    $('.sg-main iframe')[0].style.width = sizeMapping['MAX'];
 
     $('.sg-header ul:first-child a').on('click', function(event) {
         event.preventDefault();
@@ -13,20 +20,13 @@
         $('.sg-main iframe').attr('src', href);
     });
 
-    var sizeMapping = {
-        XS: 320,
-        S: 375,
-        M: 768,
-        L: 1024,
-        MAX: screenWidth
-    };
 
     $('[data-action-resize]').on('click', function(event) {
         event.preventDefault();
         sizeMapping.F = window.innerWidth;
         var $el = $(this),
             size = $el.attr('data-action-resize');
-        $('iframe')[0].style.width = sizeMapping[size] + 'px';
+        $('iframe')[0].style.width = sizeMapping[size];
         $('.sg-current-width').html('' + sizeMapping[size]);
         $('[data-action-resize]').removeClass('active');
         $el.addClass('active');
