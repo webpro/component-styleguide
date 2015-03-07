@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="sg-all">
     <head lang="en">
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,12 +10,10 @@
     <body>
         <script src="/vendor/jquery/dist/jquery.min.js"></script>
 
-        <div class="container">
-            {{#components}}
-                <h2 class="sg-h2">{{capitalizedName}}</h2>
-                {{{content}}}
-            {{/components}}
-        </div>
+        {{#components}}
+            <h2 class="sg-component-title">{{capitalizedName}}</h2>
+            {{{content}}}
+        {{/components}}
 
         <script src="{{staticPath}}/bundle.js"></script>
     </body>

@@ -1,3 +1,12 @@
+.sg-all,
+.sg-all body {
+    overflow-y: auto;
+}
+
+.sg-all body {
+    margin-top: 0.5em;
+}
+
 .sg {
     margin: 0;
     padding: 0;
