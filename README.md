@@ -13,6 +13,10 @@ See [component-styleguide-example](http://github.com/webpro/component-styleguide
 
 [Handlebars](http://handlebarsjs.com) is used as the template engine. You can organize and compile the CSS and JavaScript in any way you want. 
 
+## Screenshot
+
+![image](screenshot.png)
+
 ## Install
 
     npm install component-styleguide --save
