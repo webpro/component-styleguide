@@ -10,8 +10,7 @@ var path = require('path'),
     util = require('./util');
 
 var rootDir = path.resolve(__dirname, '..'),
-    clientDir = path.resolve(rootDir, 'client'),
-    vendorDir = path.resolve(rootDir, 'node_modules');
+    clientDir = path.resolve(rootDir, 'client');
 
 var defaults = {
     components: path.resolve(process.cwd(), 'components'),
@@ -57,7 +56,6 @@ module.exports = function start(options) {
     app.set('view engine', ext);
     app.use(compression());
     app.use('/client', express.static(clientDir));
-    app.use('/vendor', express.static(vendorDir));
     app.use(staticPath, express.static(staticLocalDir));
 
     return new Promise(function(resolve, reject) {
