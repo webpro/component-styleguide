@@ -41,13 +41,16 @@ Put templates and partials in the `atoms`, `molecules`, and `organisms` director
     var styleguide = require('component-styleguide');
     styleguide();
 
-Or, specify some alternative settings (showing default values):
+Or, specify alternative settings (showing default values):
 
     styleguide({
         components: path.resolve(__dirname, 'components'),
         ext: 'html',
         data: path.resolve(__dirname, 'data'),
-        static: path.resolve(__dirname, 'compiled')
+        staticLocalDir: path.resolve(__dirname, 'compiled'),
+        staticPath: '/compiled',
+        stylesheets: [],
+        scripts: [],
     });
 
 ### Command Line Interface
@@ -58,7 +61,7 @@ Alternatively, the styleguide can be started from the CLI. With the default conf
     
 Here's an example with parameters and their default settings:
 
-    styleguide --components components --ext html --data data --static compiled
+    styleguide --components components --ext html --data data
 
 ## Details
 
