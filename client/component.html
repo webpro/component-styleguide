@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <title>Styleguide | {{capitalizedName}}</title>
-        <link rel="stylesheet" href="{{staticPath}}/stylesheet.css"/>
+        {{#each stylesheets}}
+        <link rel="stylesheet" href="{{../staticPath}}/{{.}}"/>
+        {{/each}}
         <link rel="stylesheet" href="/client/styleguide.css"/>
     </head>
     <body>
@@ -22,7 +24,8 @@
             <pre><code>{{template}}</code></pre>
         </section>
 
-
-        <script src="{{staticPath}}/bundle.js"></script>
+        {{#each scripts}}
+        <script src="{{../staticPath}}/{{.}}"></script>
+        {{/each}}
     </body>
 </html>

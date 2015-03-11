@@ -16,8 +16,10 @@ var rootDir = path.resolve(__dirname, '..'),
 var defaults = {
     components: path.resolve(process.cwd(), 'components'),
     data: path.resolve(process.cwd(), 'data'),
-    static: path.resolve(process.cwd(), 'compiled'),
+    staticLocalDir: path.resolve(process.cwd(), 'compiled'),
     staticPath: '/compiled',
+    stylesheets: [],
+    scripts: [],
     ext: 'html',
     middlewares: []
 };
@@ -27,8 +29,10 @@ module.exports = function start(options) {
     var ext = options.ext || defaults.ext,
         componentDir = options.components || defaults.components,
         dataDir = options.data || defaults.data,
-        staticDir = options.static || defaults.static,
+        staticLocalDir = options.staticLocalDir || options.static || defaults.staticLocalDir,
         staticPath = options.staticPath || defaults.staticPath,
+        stylesheets = options.stylesheets || defaults.stylesheets,
+        scripts = options.scripts || defaults.scripts,
         middlewares = options.middlewares || defaults.middlewares;
 
     var ehbs = exphbs.create({
@@ -37,6 +41,12 @@ module.exports = function start(options) {
         extname: '.html',
         partialsDir: componentDir
     });
+
+    var staticConfig = {
+        staticPath: staticPath,
+        stylesheets: stylesheets,
+        scripts: scripts
+    };
 
     middlewares.forEach(function(middleware) {
         app.use(middleware);
@@ -48,7 +58,7 @@ module.exports = function start(options) {
     app.use(compression());
     app.use('/client', express.static(clientDir));
     app.use('/vendor', express.static(vendorDir));
-    app.use(staticPath, express.static(staticDir));
+    app.use(staticPath, express.static(staticLocalDir));
 
     return new Promise(function(resolve, reject) {
 
@@ -67,16 +77,15 @@ module.exports = function start(options) {
                 });
 
                 app.get('/all', function(req, res) {
-                    res.render('all', {
+                    res.render('all', assign({}, staticConfig, {
                         layout: false,
-                        components: components.flat,
-                        staticPath: staticPath
-                    });
+                        components: components.flat
+                    }));
                 });
 
                 app.get('/:type/:id', function(req, res) {
                     var component = find(components.flat, {type: req.params.type, name: req.params.id.replace('.' + ext, '')});
-                    res.render(component.path, assign({staticPath: staticPath}, data, component));
+                    res.render(component.path, assign({}, staticConfig, data, component));
                 });
 
                 app.set('port', (process.env.PORT || 3000));
