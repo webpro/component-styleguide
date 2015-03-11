@@ -6,7 +6,7 @@ function isAtomic(type) {
     return ['atoms', 'molecules', 'organisms'].indexOf(type) !== -1;
 }
 
-function getComponentsInfo(templates, partials, data) {
+function getComponentsInfo(componentDir, templates, partials, data) {
 
     var components = {flat: [], typed: []},
         component,
@@ -23,6 +23,7 @@ function getComponentsInfo(templates, partials, data) {
             path: tplName,
             capitalizedName: getCapitalizedString(matches[2]),
             isAtomic: isAtomic(type),
+            template: fs.readFileSync(path.resolve(componentDir, tplName)).toString(),
             content: templates[tplName](data, {
                 partials: partials
             })

@@ -5,6 +5,8 @@ var path = require('path'),
     compression = require('compression'),
     exphbs = require('express-handlebars'),
     Promise = require('promise'),
+    find = require('lodash.find'),
+    assign = require('lodash.assign'),
     util = require('./util');
 
 var rootDir = path.resolve(__dirname, '..'),
@@ -55,7 +57,7 @@ module.exports = function start(options) {
             return ehbs.getTemplates(componentDir).then(function(templates) {
 
                 var data = util.getTemplateData(dataDir + '/**/*.json'),
-                    components = util.getComponentsInfo(templates, partials, data);
+                    components = util.getComponentsInfo(componentDir, templates, partials, data);
 
                 app.get('/', function(req, res) {
                     res.render('styleguide', {
@@ -73,12 +75,8 @@ module.exports = function start(options) {
                 });
 
                 app.get('/:type/:id', function(req, res) {
-                    var id = req.params.id.replace('.' + ext, ''),
-                        filename = id + '.' + ext,
-                        component = [req.params.type, id].join('/');
-                    data.template = fs.readFileSync(path.resolve(componentDir, req.params.type, filename)).toString();
-                    data.staticPath = staticPath;
-                    res.render(component, data);
+                    var component = find(components.flat, {type: req.params.type, name: req.params.id.replace('.' + ext, '')});
+                    res.render(component.path, assign({staticPath: staticPath}, data, component));
                 });
 
                 app.set('port', (process.env.PORT || 3000));
