@@ -4,7 +4,7 @@
 }
 
 .sg-all body {
-    margin-top: 0.5em;
+    padding-top: 0.5em;
 }
 
 .sg {
@@ -125,14 +125,13 @@
     z-index: 0;
 }
 
-.sg-main div {
+.sg-main > div {
     height: 100%;
     position: relative;
     text-align: center;
     margin: 0 auto;
     -webkit-overflow-scrolling: touch;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .sg-main iframe {
