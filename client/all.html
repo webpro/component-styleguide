@@ -11,10 +11,12 @@
     <body>
         <script src="/vendor/jquery/dist/jquery.min.js"></script>
 
-        {{#components}}
+        <div class="sg-container">
+            {{#components}}
             <h2 class="sg-component-title">{{capitalizedName}}</h2>
             {{{content}}}
-        {{/components}}
+            {{/components}}
+        </div>
 
         <script src="{{staticPath}}/bundle.js"></script>
     </body>
