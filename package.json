@@ -11,10 +11,6 @@
   "bin": {
     "styleguide": "bin/styleguide.js"
   },
-  "scripts": {
-    "start": "node server",
-    "dev": "nodemon -w client -w server -e js,json,html example/server"
-  },
   "dependencies": {
     "compression": "^1.4.1",
     "express": "^4.12.0",
@@ -25,9 +21,6 @@
     "lodash.find": "^3.0.0",
     "minimist": "^1.1.0",
     "promise": "^6.1.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.3.7"
   },
   "repository": {
     "type": "git",
