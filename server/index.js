@@ -85,7 +85,11 @@ module.exports = function start(options) {
 
                 app.get('/:type/:id', function(req, res) {
                     var component = find(components.flat, {type: req.params.type, name: req.params.id.replace('.' + ext, '')});
-                    res.render(component.path, assign({}, staticConfig, data, component));
+                    if(component) {
+                        res.render(component.path, assign({}, staticConfig, data, component));
+                    } else {
+                        res.sendStatus(404);
+                    }
                 });
 
                 app.set('port', (process.env.PORT || 3000));
