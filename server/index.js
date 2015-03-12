@@ -25,6 +25,8 @@ var defaults = {
 
 module.exports = function start(options) {
 
+    options = options || {};
+
     var ext = options.ext || defaults.ext,
         componentDir = options.components || defaults.components,
         dataDir = options.data || defaults.data,
