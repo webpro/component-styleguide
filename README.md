@@ -54,9 +54,13 @@ The styleguide is now running at [http://localhost:3000](http://localhost:3000).
 
 Put templates and partials in the `atoms`, `molecules`, and `organisms` directories. They should be files ending with `.html` and contain HTML snippets (or actually Handlebars templates).
 
-Here is a screencast of a quick & dirty installation (apologies for bad quality):
+Here is a screencast of a quick & dirty installation:
 
-![image](hello-world.gif)
+![Installation](installation.gif)
+
+And here's the result in the browser:
+
+![Hello World](hello-world.gif)
 
 ## Configuration
 
