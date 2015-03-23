@@ -1,7 +1,7 @@
 .sg {
     margin: 0;
     padding: 0;
-    font-family: "Helvetic Neue", Helvetica, Arial;
+    font-family: "Helvetica Neue", Helvetica, Arial;
     font-size: 14px;
 }
 
@@ -25,7 +25,7 @@
 
 .sg-header ul {
     list-style: none;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .sg-header .current-width {
@@ -46,6 +46,7 @@
     background-color: transparent;
     color: #000;
     fill: currentColor;
+    margin-bottom: -5px;
 }
 
 .sg-nav {
@@ -58,6 +59,10 @@
     position: relative;
     padding: 0 10px;
     cursor: pointer;
+}
+
+.sg-nav > li {
+    line-height: 20px;
 }
 
 .sg-nav ul a {
