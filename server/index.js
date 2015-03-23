@@ -106,11 +106,12 @@ module.exports = function start(options) {
                     ehbs: ehbs
                 })
 
-            });
-        }).catch(function() {
-            reject.apply(null, arguments);
-        });
+            }).catch(reject);
 
-    })
+        }).catch(reject);
+
+    }).catch(function(err){
+        console.error(err.stack);
+    });
 
 };
