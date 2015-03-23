@@ -72,19 +72,21 @@ module.exports = function start(options) {
                 app.get('/', function(req, res) {
                     res.render('styleguide', {
                         layout: false,
-                        pages: components.typed
+                        pages: components.menu
                     });
                 });
 
                 app.get('/all', function(req, res) {
                     res.render('all', assign({}, staticConfig, {
                         layout: false,
-                        components: components.flat
+                        components: components.overview
                     }));
                 });
 
-                app.get('/:type/:id', function(req, res) {
-                    var component = find(components.flat, {type: req.params.type, name: req.params.id.replace('.' + ext, '')});
+                app.get('/:type/:id?', function(req, res) {
+                    var componentType = req.params.id ? req.params.type : 'root',
+                        componentName = (req.params.id ? req.params.id : req.params.type).replace('.' + ext, ''),
+                        component = find(components.all, {type: componentType, name: componentName});
                     if(component) {
                         res.render(component.path, assign({}, staticConfig, data, component));
                     } else {

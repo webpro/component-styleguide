@@ -12,51 +12,16 @@
         <div class="sg-header">
 
             <ul class="sg-nav">
-                <li title="atoms">
-                    <svg role="img" title="atoms"><use xlink:href="/client/svgdefs.svg#icon-dot-single"></use></svg>
+                {{#each pages}}
+                <li title="{{name}}">
+                    {{#if icon}}<svg role="img" title="{{name}}"><use xlink:href="/client/svgdefs.svg#icon-{{icon}}"></use></svg>{{else}}{{name}}{{/if}}
                     <ul>
-                        {{#pages.atoms}}
+                        {{#each components}}
                         <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
-                        {{/pages.atoms}}
+                        {{/each}}
                     </ul>
-
                 </li>
-                <li title="molecules">
-                    <svg role="img" title="molecules"><use xlink:href="/client/svgdefs.svg#icon-flow-line"></use></svg>
-                    <ul>
-                        {{#pages.molecules}}
-                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
-                        {{/pages.molecules}}
-                    </ul>
-
-                </li>
-                <li title="organisms">
-                    <svg role="img" title="organisms"><use xlink:href="/client/svgdefs.svg#icon-flow-tree"></use></svg>
-                    <ul>
-                        {{#pages.organisms}}
-                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
-                        {{/pages.organisms}}
-                    </ul>
-
-                </li>
-                <li title="templates">
-                    <svg role="img" title="templates"><use xlink:href="/client/svgdefs.svg#icon-file"></use></svg>
-                    <ul>
-                        {{#pages.templates}}
-                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
-                        {{/pages.templates}}
-                    </ul>
-
-                </li>
-                <li title="pages">
-                    <svg role="img" title="pages"><use xlink:href="/client/svgdefs.svg#icon-article"></use></svg>
-                    <ul>
-                        {{#pages.pages}}
-                        <li><a href="{{{path}}}">{{capitalizedName}}</a></li>
-                        {{/pages.pages}}
-                    </ul>
-
-                </li>
+                {{/each}}
                 <li><a href="all"><svg role="img" title="back"><use xlink:href="/client/svgdefs.svg#icon-format-align-justify"></use></svg></a></li>
             </ul>
 
