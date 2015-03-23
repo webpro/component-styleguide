@@ -14,6 +14,7 @@ var rootDir = path.resolve(__dirname, '..'),
 
 var defaults = {
     components: path.resolve(process.cwd(), 'components'),
+    rootName: 'root',
     data: path.resolve(process.cwd(), 'data'),
     staticLocalDir: path.resolve(process.cwd(), 'compiled'),
     staticPath: '/compiled',
@@ -29,6 +30,7 @@ module.exports = function start(options) {
 
     var ext = options.ext || defaults.ext,
         componentDir = options.components || defaults.components,
+        rootName = options.rootName || defaults.rootName,
         dataDir = options.data || defaults.data,
         staticLocalDir = options.staticLocalDir || options.static || defaults.staticLocalDir,
         staticPath = options.staticPath || defaults.staticPath,
@@ -67,7 +69,13 @@ module.exports = function start(options) {
             return ehbs.getTemplates(componentDir).then(function(templates) {
 
                 var data = util.getTemplateData(dataDir + '/**/*.json'),
-                    components = util.getComponentsInfo(componentDir, templates, partials, data);
+                    components = util.getComponentsInfo({
+                        componentDir: componentDir,
+                        rootName: rootName,
+                        templates: templates,
+                        partials: partials,
+                        data: data
+                    });
 
                 app.get('/', function(req, res) {
                     res.render('styleguide', {
@@ -84,7 +92,7 @@ module.exports = function start(options) {
                 });
 
                 app.get('/:type/:id?', function(req, res) {
-                    var componentType = req.params.id ? req.params.type : 'root',
+                    var componentType = req.params.id ? req.params.type : rootName,
                         componentName = (req.params.id ? req.params.id : req.params.type).replace('.' + ext, ''),
                         component = find(components.all, {type: componentType, name: componentName});
                     if(component) {

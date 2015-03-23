@@ -3,7 +3,6 @@ var path = require('path'),
     glob = require('glob');
 
 var atomicStructure = [
-    {name: 'root', inOverview: true},
     {name: 'atoms', inOverview: true, icon: 'dot-single'},
     {name: 'molecules', inOverview: true, icon: 'flow-line'},
     {name: 'organisms', inOverview: true, icon: 'flow-tree'},
@@ -11,7 +10,7 @@ var atomicStructure = [
     {name: 'pages', inOverview: false, icon: 'article'}
 ];
 
-function getComponentsInfo(componentDir, templates, partials, data) {
+function getComponentsInfo(options) {
 
     var components = {all: [], menu: [], overview: [], typed: []},
         component,
@@ -20,18 +19,18 @@ function getComponentsInfo(componentDir, templates, partials, data) {
         componentName,
         re = /([^\/]+)\/([^\.]+)(\.html)/;
 
-    for(var tplName in templates) {
+    for(var tplName in options.templates) {
         matches = tplName.match(re);
-        componentType = matches ? matches[1] : 'root';
+        componentType = matches ? matches[1] : options.rootName;
         componentName = matches ? matches[2] : tplName.replace(/\.html/, '');
         component = {
             type: componentType,
             name: componentName,
             path: tplName,
             capitalizedName: getCapitalizedString(componentName),
-            template: fs.readFileSync(path.resolve(componentDir, tplName)).toString(),
-            content: templates[tplName](data, {
-                partials: partials
+            template: fs.readFileSync(path.resolve(options.componentDir, tplName)).toString(),
+            content: options.templates[tplName](options.data, {
+                partials: options.partials
             })
         };
 
@@ -41,6 +40,8 @@ function getComponentsInfo(componentDir, templates, partials, data) {
         components.typed[componentType].push(component);
 
     }
+
+    atomicStructure.unshift({name: options.rootName, inOverview: true});
 
     atomicStructure.forEach(function(atomicType) {
         if(components.typed[atomicType.name] && components.typed[atomicType.name].length > 0) {
