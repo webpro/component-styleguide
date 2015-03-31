@@ -18,8 +18,8 @@ var defaults = {
     data: path.resolve(process.cwd(), 'data'),
     staticLocalDir: path.resolve(process.cwd(), 'compiled'),
     staticPath: '/compiled',
-    stylesheets: [],
-    scripts: [],
+    stylesheets: ['stylesheet.css'],
+    scripts: ['bundle.js'],
     ext: 'html',
     middlewares: []
 };
