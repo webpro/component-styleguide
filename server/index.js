@@ -56,7 +56,7 @@ module.exports = function start(options) {
     });
 
     app.engine(ext, ehbs.engine);
-    app.set('views', [clientDir, componentDir]);
+    app.set('views', componentDir);
     app.set('view engine', ext);
     app.use(compression());
     app.use('/client', express.static(clientDir));
@@ -78,14 +78,14 @@ module.exports = function start(options) {
                     });
 
                 app.get('/', function(req, res) {
-                    res.render('styleguide', {
+                    res.render(path.resolve(clientDir, 'styleguide'), {
                         layout: false,
                         pages: components.menu
                     });
                 });
 
                 app.get('/all', function(req, res) {
-                    res.render('all', assign({}, staticConfig, {
+                    res.render(path.resolve(clientDir, 'all'), assign({}, staticConfig, {
                         layout: false,
                         components: components.overview
                     }));
