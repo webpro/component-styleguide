@@ -45,9 +45,8 @@ module.exports = function start(options) {
     });
 
     var staticConfig = {
-        staticPath: staticPath,
-        stylesheets: stylesheets,
-        scripts: scripts
+        stylesheets: util.normalizeAssetPaths(staticPath, stylesheets),
+        scripts: util.normalizeAssetPaths(staticPath, scripts)
     };
 
     middlewares.forEach(function(middleware) {

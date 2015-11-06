@@ -81,7 +81,14 @@ function getTemplateData(pattern) {
     return data;
 }
 
+function normalizeAssetPaths(staticPath, resourcePaths) {
+    return resourcePaths.map(function(resourcePath) {
+        return resourcePath.indexOf('http') === 0 ? resourcePath : path.join(staticPath, resourcePath);
+    })
+}
+
 module.exports = {
     getComponentsInfo: getComponentsInfo,
-    getTemplateData: getTemplateData
+    getTemplateData: getTemplateData,
+    normalizeAssetPaths: normalizeAssetPaths
 };

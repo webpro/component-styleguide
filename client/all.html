@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <title>Styleguide | All</title>
         {{#each stylesheets}}
-        <link rel="stylesheet" href="{{../staticPath}}/{{.}}"/>
+        <link rel="stylesheet" href="{{.}}"/>
         {{/each}}
         <link rel="stylesheet" href="/client/styleguide.css"/>
     </head>
@@ -19,7 +19,7 @@
         </div>
 
         {{#each scripts}}
-        <script src="{{../staticPath}}/{{.}}"></script>
+        <script src="{{.}}"></script>
         {{/each}}
     </body>
 </html>
