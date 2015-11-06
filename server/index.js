@@ -5,8 +5,7 @@ var path = require('path'),
     compression = require('compression'),
     exphbs = require('express-handlebars'),
     Promise = require('promise'),
-    find = require('lodash.find'),
-    assign = require('lodash.assign'),
+    _ = require('lodash'),
     util = require('./util');
 
 var rootDir = path.resolve(__dirname, '..'),
@@ -85,7 +84,7 @@ module.exports = function start(options) {
                 });
 
                 app.get('/all', function(req, res) {
-                    res.render(path.resolve(clientDir, 'all'), assign({}, staticConfig, {
+                    res.render(path.resolve(clientDir, 'all'), _.assign({}, staticConfig, {
                         layout: false,
                         components: components.overview
                     }));
@@ -94,9 +93,9 @@ module.exports = function start(options) {
                 app.get('/:type/:id?', function(req, res) {
                     var componentType = req.params.id ? req.params.type : rootName,
                         componentName = (req.params.id ? req.params.id : req.params.type).replace('.' + ext, ''),
-                        component = find(components.all, {type: componentType, name: componentName});
+                        component = _.find(components.all, {type: componentType, name: componentName});
                     if(component) {
-                        res.render(component.path, assign({}, staticConfig, data, component));
+                        res.render(component.path, _.assign({}, staticConfig, data, component));
                     } else {
                         res.sendStatus(404);
                     }
