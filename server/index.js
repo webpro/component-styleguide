@@ -90,10 +90,16 @@ module.exports = function start(options) {
                     }));
                 });
 
-                app.get('/:type/:id?', function(req, res) {
-                    var componentType = req.params.id ? req.params.type : rootName,
-                        componentName = (req.params.id ? req.params.id : req.params.type).replace('.' + ext, ''),
+                app.get('*', function(req, res) {
+
+                    var url = req.url.substring(1),
+                        parts = url.split('/'),
+                        rest = _.rest(parts).join('/');
+
+                    var componentType = parts.length > 1 ? parts[0] : rootName,
+                        componentName = (parts.length === 1 ? parts[0] : rest).replace('.' + ext, ''),
                         component = _.find(components.all, {type: componentType, name: componentName});
+
                     if(component) {
                         res.render(component.path, _.assign({}, staticConfig, data, component));
                     } else {
