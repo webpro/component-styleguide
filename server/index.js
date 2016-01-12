@@ -20,7 +20,8 @@ var defaults = {
     stylesheets: ['stylesheet.css'],
     scripts: ['bundle.js'],
     ext: 'html',
-    middlewares: []
+    middlewares: [],
+    helpers: {}
 };
 
 module.exports = function start(options) {
@@ -35,13 +36,15 @@ module.exports = function start(options) {
         staticPath = options.staticPath || defaults.staticPath,
         stylesheets = options.stylesheets || defaults.stylesheets,
         scripts = options.scripts || defaults.scripts,
-        middlewares = options.middlewares || defaults.middlewares;
+        middlewares = options.middlewares || defaults.middlewares,
+        helpers = options.helpers || defaults.helpers;
 
     var ehbs = exphbs.create({
         defaultLayout: 'component',
         layoutsDir: clientDir,
         extname: '.html',
-        partialsDir: componentDir
+        partialsDir: componentDir,
+        helpers: helpers
     });
 
     var staticConfig = {
