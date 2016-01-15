@@ -100,7 +100,8 @@ module.exports = function start(options) {
                         component = _.find(components.all, {type: componentType, name: componentName});
 
                     if(component) {
-                        res.render(component.path, _.assign({}, staticConfig, data, component));
+                        var dataForFile = util.getDataForFile(path.resolve(componentDir, component.path));
+                        res.render(component.path, _.assign({}, staticConfig, _.assign(data, dataForFile), component));
                     } else {
                         res.sendStatus(404);
                     }
@@ -111,14 +112,13 @@ module.exports = function start(options) {
                 var server = app.listen(app.get('port'), function() {
                     var host = server.address().address,
                         port = server.address().port;
-                    console.log('Styleguide server started at http://%s:%s', host, port)
                 });
 
                 resolve({
                     app: app,
                     server: server,
                     ehbs: ehbs
-                })
+                });
 
             }).catch(reject);
 

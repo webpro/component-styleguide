@@ -1,6 +1,9 @@
+'use strict';
+
 var path = require('path'),
     fs = require('fs'),
-    glob = require('glob');
+    glob = require('glob'),
+    _ = require('lodash');
 
 var atomicStructure = [
     {name: 'atoms', inOverview: true, icon: 'dot-single'},
@@ -23,13 +26,14 @@ function getComponentsInfo(options) {
         matches = tplName.match(re);
         componentType = matches ? matches[1] : options.rootName;
         componentName = matches ? matches[2] : tplName.replace(/\.html/, '');
+        var dataForFile = getDataForFile(path.resolve(options.componentDir, tplName));
         component = {
             type: componentType,
             name: componentName,
             path: tplName,
             capitalizedName: getCapitalizedString(componentName),
             template: fs.readFileSync(path.resolve(options.componentDir, tplName)).toString(),
-            content: options.templates[tplName](options.data, {
+            content: options.templates[tplName](_.assign(options.data, dataForFile), {
                 partials: options.partials
             })
         };
@@ -71,6 +75,16 @@ function getCapitalizedString(s) {
     }).join(' ')
 }
 
+function getDataForFile (filepath) {
+    var jsonPath = filepath.replace(/.html$/, '.json');
+    try {
+        var res = require(jsonPath);
+        return res;
+    } catch (e) {
+        return {};
+    }
+}
+
 function getTemplateData(pattern) {
     var dataFiles = glob.sync(pattern),
         data = {};
@@ -84,11 +98,12 @@ function getTemplateData(pattern) {
 function normalizeAssetPaths(staticPath, resourcePaths) {
     return resourcePaths.map(function(resourcePath) {
         return resourcePath.indexOf('http') === 0 ? resourcePath : path.join(staticPath, resourcePath);
-    })
+    });
 }
 
 module.exports = {
     getComponentsInfo: getComponentsInfo,
     getTemplateData: getTemplateData,
-    normalizeAssetPaths: normalizeAssetPaths
+    normalizeAssetPaths: normalizeAssetPaths,
+    getDataForFile: getDataForFile
 };
