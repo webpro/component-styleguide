@@ -111,6 +111,17 @@ All "data" files are concatenated into one "context" for the templates. E.g. `us
 
 Now, the `{{#users}}` collection can be iterated over in any template.
 
+If a there is a JSON file with the same name as the HTML file next to it, its data will be loaded
+in context data in priority over other data.
+
+In this example, `header.html` will get data from `header.json`:
+
+```
+molecules
+  header.html
+  header.json
+```
+
 ### CSS & JS
 
 You can organize and compile your CSS and JavaScript in any way you want, as long as they end up in e.g. `/compiled` (the `staticLocalDir`) to serve them with the components. I think it's a good idea to work directly in this folder, or compile SASS/LESS/... source files into e.g. `compiled/stylesheet.css` and configure it as `stylesheets: ['stylesheet.css']`.
