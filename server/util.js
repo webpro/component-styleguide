@@ -20,13 +20,14 @@ function getComponentsInfo(options) {
         matches,
         componentType,
         componentName,
+        dataForFile,
         re = /([^\/]+)\/([^\.]+)(\.html)/;
 
     for(var tplName in options.templates) {
         matches = tplName.match(re);
         componentType = matches ? matches[1] : options.rootName;
         componentName = matches ? matches[2] : tplName.replace(/\.html/, '');
-        var dataForFile = getDataForFile(path.resolve(options.componentDir, tplName));
+        dataForFile = getDataForFile(path.resolve(options.componentDir, tplName));
         component = {
             type: componentType,
             name: componentName,
@@ -75,8 +76,8 @@ function getCapitalizedString(s) {
     }).join(' ')
 }
 
-function getDataForFile (filepath) {
-    var jsonPath = filepath.replace(/.html$/, '.json');
+function getDataForFile (filePath) {
+    var jsonPath = filePath.replace(/.html$/, '.json');
     try {
         var res = require(jsonPath);
         return res;

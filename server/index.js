@@ -112,6 +112,7 @@ module.exports = function start(options) {
                 var server = app.listen(app.get('port'), function() {
                     var host = server.address().address,
                         port = server.address().port;
+                    console.log('Styleguide server started at http://%s:%s', host, port);
                 });
 
                 resolve({
