@@ -14,10 +14,10 @@
   "dependencies": {
     "compression": "^1.4.4",
     "express": "^4.12.4",
-    "express-handlebars": "^2.0.1",
-    "glob": "^5.0.10",
-    "handlebars": "^3.0.3",
-    "lodash": "^3.10.1",
+    "express-handlebars": "^3.0.0",
+    "glob": "^7.1.2",
+    "handlebars": "^4.0.10",
+    "lodash": "^4.17.4",
     "minimist": "^1.1.1",
     "promise": "^7.0.1"
   },
