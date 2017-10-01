@@ -33,5 +33,11 @@
     "email": "lars@webpro.nl",
     "url": "http://webpro.nl"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.7.3"
+  },
+  "scripts": {
+    "prettier": "prettier --single-quote --write \"{bin,server}/**/*.js\""
+  }
 }
