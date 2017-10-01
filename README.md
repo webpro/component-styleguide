@@ -8,7 +8,7 @@ Simple styleguide framework. Install [component-styleguide](https://www.npmjs.co
 
 Simple. You start out with a blank project. Your codebase contains just your own HTML templates and CSS stylesheets (and JavaScript if you want to). Put your files in some (configurable) directories, and there you have it.
 
-See [component-styleguide-example](http://github.com/webpro/component-styleguide-example) for an example setup (you could use this project as a boilerplate), and a [live running example](http://component-styleguide-example.webpro.nl).
+See [component-styleguide-example](http://github.com/webpro/component-styleguide-example) for an example setup (you could use this project as a boilerplate), and a [live running example](https://component-styleguide.now.sh).
 
 You can use it as a development server, and/or host it somewhere as a Node service.
 
