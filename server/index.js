@@ -98,7 +98,7 @@ module.exports = function start(options) {
             app.get('*', function(req, res) {
               var url = req.url.substring(1),
                 parts = url.split('/'),
-                rest = _.rest(parts).join('/');
+                rest = _.tail(parts).join('/');
 
               var componentType = parts.length > 1 ? parts[0] : rootName,
                 componentName = (parts.length === 1 ? parts[0] : rest).replace(
