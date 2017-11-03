@@ -3,7 +3,6 @@ var path = require('path'),
   app = express(),
   compression = require('compression'),
   exphbs = require('express-handlebars'),
-  Promise = require('promise'),
   _ = require('lodash'),
   util = require('./util');
 
